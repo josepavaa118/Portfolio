@@ -3,10 +3,10 @@ import {motion} from 'framer-motion'
 import './About.scss'
 import { images } from '../../constants'
 const abouts= [
-  {title: 'Quality Assurance' , description: 'Senior Automation Engineer', imgUrl:images.about01},
-  {title: 'Test Automation' , description: 'Senior Automation Engineer', imgUrl:images.about02},
-  {title: 'UI/UX Testing' , description: 'Senior Automation Engineer', imgUrl:images.about03},
-  {title: 'Backend Testing' , description: 'Senior Automation Engineer', imgUrl:images.about04}
+  {title: 'Quality Assurance' , description: 'Making sure everything is in place', imgUrl:images.about01},
+  {title: 'Test Automation' , description: 'Saving time and ensuring functionality', imgUrl:images.about02},
+  {title: 'UI/UX Testing' , description: 'Is your platform looking good?', imgUrl:images.about03},
+  {title: 'Backend Testing' , description: 'Is your platform working as intended?', imgUrl:images.about04}
 ]
 
 const About = () => {
