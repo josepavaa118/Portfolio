@@ -1,20 +1,27 @@
-import { useState, useEffect } from 'react'
-import {motion} from 'framer-motion'
-import './About.scss'
-import { images } from '../../constants'
-const abouts= [
-  {title: 'Quality Assurance' , description: 'Making sure everything is in place', imgUrl:images.about01},
-  {title: 'Test Automation' , description: 'Saving time and ensuring functionality', imgUrl:images.about02},
-  {title: 'UI/UX Testing' , description: 'Is your platform looking good?', imgUrl:images.about03},
-  {title: 'Backend Testing' , description: 'Is your platform working as intended?', imgUrl:images.about04}
-]
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+
+import './About.scss';
+import { urlFor, client } from '../../client';
 
 const About = () => {
+  const [abouts, setAbouts] = useState([]);
+
+  useEffect(() => {
+    const query = '*[_type == "abouts"]';
+
+    client.fetch(query).then((data) => {
+      setAbouts(data);
+    });
+  }, []);
+
   return (
-    <> 
-      <h2 className="head-text">I Know that <span>Quality</span> <br />means  <span>Customer Trust</span></h2>
+    <>
+      <h2 className="head-text">I Know that <span>Good Design</span> <br />means  <span>Good Business</span></h2>
+
       <div className="app__profiles">
-      {abouts.map((about, index) => (
+        {abouts.map((about, index) => (
           <motion.div
             whileInView={{ opacity: 1 }}
             whileHover={{ scale: 1.1 }}
@@ -22,14 +29,14 @@ const About = () => {
             className="app__profile-item"
             key={about.title + index}
           >
-            <img src={about.imgUrl} alt={about.title} />
+            <img src={urlFor(about.imgUrl)} alt={about.title} />
             <h2 className="bold-text" style={{ marginTop: 20 }}>{about.title}</h2>
             <p className="p-text" style={{ marginTop: 10 }}>{about.description}</p>
           </motion.div>
         ))}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default About
+export default About;
