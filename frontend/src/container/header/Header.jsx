@@ -3,6 +3,7 @@ import './Header'
 import { motion } from 'framer-motion';
 import './Header.scss'
 import { images } from '../../constants'
+import {AppWrap} from '../../wrapper'
 const scaleVariants={
   whileInView:{
     scale: [0,1],
@@ -14,7 +15,7 @@ const scaleVariants={
   }
 }
 
-const header = () => {
+const Header = () => {
   return (
     <div className="app__header app__flex">
     <motion.div
@@ -67,4 +68,4 @@ const header = () => {
   )
 }
 
-export default header
+export default AppWrap (Header,'home')
