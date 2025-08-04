@@ -1,15 +1,14 @@
 .app__skills {
-  flex: 1;
   width: 100%;
   flex-direction: column;
 }
 
 .app__skills-container {
-  width: 80%;
-  margin-top: 3rem;
-
+  width: 100%;
+  margin: 3rem auto 0;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 
   @media screen and (max-width: 900px) {
     width: 100%;
@@ -21,23 +20,31 @@
   flex: 1;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
-
-  margin-right: 5rem;
+  gap: 2rem;
 
   @media screen and (max-width: 900px) {
-    margin-right: 0;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
+  }
+
+  @media screen and (max-width: 450px) {
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
   }
 }
 
 .app__skills-item {
   flex-direction: column;
   text-align: center;
+  display: flex;
+  align-items: center;
 
-  margin: 1rem;
+  /* Removed margin in favor of gap on parent */
 
   transition: all 0.3s ease-in-out;
 
@@ -46,6 +53,9 @@
     height: 90px;
     border-radius: 50%;
     background-color: #fef4f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     img {
       width: 50%;
@@ -70,10 +80,16 @@
   p {
     font-weight: 500;
     margin-top: 0.5rem;
+    text-align: center;
+
+    @media screen and (max-width: 450px) {
+      text-align: center;
+      width: 100%;
+    }
   }
 
   @media screen and (min-width: 2000px) {
-    margin: 1rem 2rem;
+    /* Removed margin in favor of gap on parent */
 
     p {
       margin-top: 1rem;
