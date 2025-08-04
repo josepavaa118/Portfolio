@@ -123,13 +123,16 @@
       border-radius: 50%;
       background-color: rgba(0, 0, 0, 0.5);
       color: #fff;
-  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       margin: 1rem;
       font-family: var(--font-base);
       font-weight: 800;
       cursor: pointer;
       transition: all 0.3s ease;
-  
+
       svg {
         width: 50%;
         height: 50%;
