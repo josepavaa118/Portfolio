@@ -8,6 +8,13 @@
     }
   }
   
+.error {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    display: block;
+  }
+  
   .app__footer-cards {
     width: 60%;
     margin: 4em auto 2rem auto;
@@ -16,6 +23,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
+    
   
     .app__footer-card {
       width: 320px;
@@ -141,3 +149,4 @@
     align-items: flex-start;
     min-width: 0;
   }
+  

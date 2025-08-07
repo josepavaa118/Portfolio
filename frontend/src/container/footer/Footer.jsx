@@ -9,6 +9,7 @@ const Footer = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const { username, email, message } = formData;
 
@@ -17,7 +18,25 @@ const Footer = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.username) newErrors.username = "Name is required";
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    if (!formData.message) newErrors.message = "Message is required";
+    return newErrors;
+  };
+
   const handleSubmit = () => {
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setErrors({});
     setLoading(true);
 
     const contact = {
@@ -59,9 +78,11 @@ const Footer = () => {
         <div className="app__footer-form app__flex">
           <div className="app__flex">
             <input className="p-text" type="text" placeholder="Your Name" name="username" value={username} onChange={handleChangeInput} />
+            {errors.username && <span className="error">{errors.username}</span>}
           </div>
           <div className="app__flex">
             <input className="p-text" type="email" placeholder="Your Email" name="email" value={email} onChange={handleChangeInput} />
+            {errors.email && <span className="error">{errors.email}</span>}
           </div>
           <div>
             <textarea
@@ -71,6 +92,7 @@ const Footer = () => {
               name="message"
               onChange={handleChangeInput}
             />
+            {errors.message && <span className="error">{errors.message}</span>}
           </div>
           <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
         </div>
