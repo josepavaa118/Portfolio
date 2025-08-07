@@ -103,6 +103,9 @@ const Testimonial = () => {
             <img src={urlFor(brand.imgUrl).url()} alt={brand.name} />
           </motion.div>
         ))}
+        <p className="testimonial-disclaimer" style={{ fontSize: '0.8rem', color: '#888', marginTop: '1rem', textAlign: 'center', width: '100%' }}>
+    All trademarks and logos are property of their respective owners and are used here for informational and portfolio purposes only.
+  </p>
       </div>
     </>
   );
