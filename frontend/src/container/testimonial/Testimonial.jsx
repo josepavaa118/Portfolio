@@ -93,6 +93,9 @@ const Testimonial = () => {
         </div>
       )}
 
+      <h2 className="head-text" style={{ textAlign: 'center', width: '100%' }}>
+        A look at my <span>past projects.</span>
+      </h2>
       <div className="app__testimonial-brands app__flex">
         {brands.map((brand) => (
           <motion.div
@@ -100,7 +103,11 @@ const Testimonial = () => {
             transition={{ duration: 0.5, type: 'tween' }}
             key={brand._id}
           >
-            <img src={urlFor(brand.imgUrl).url()} alt={brand.name} />
+            <img
+              src={urlFor(brand.imgUrl).url()}
+              alt={brand.name}
+              title={brand.description || brand.name}
+            />
           </motion.div>
         ))}
         <p className="testimonial-disclaimer" style={{ fontSize: '0.8rem', color: '#888', marginTop: '1rem', textAlign: 'center', width: '100%' }}>
