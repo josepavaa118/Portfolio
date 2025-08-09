@@ -79,6 +79,7 @@
     .p-text.testimonial-feedback {
       display: -webkit-box;
       -webkit-line-clamp: 4;
+      line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -87,8 +88,17 @@
     }
     .p-text.testimonial-feedback.expanded {
       -webkit-line-clamp: unset;
+      line-clamp: unset;
       max-height: none;
       overflow: visible;
+    }
+
+    .p-text.testimonial-disclaimer {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 1rem;
+      text-align: center;
+      width: 100%;
     }
 
     .testimonial-toggle {
