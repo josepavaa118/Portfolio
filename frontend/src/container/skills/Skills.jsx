@@ -5,14 +5,17 @@ import { Tooltip as ReactTooltip } from 'react-tooltip'
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { urlFor, client } from '../../client';
 import './Skills.scss';
+import '../education/Education.scss';
 
 const Skills = () => {
   const [experiences, setExperiences] = useState([]);
   const [skills, setSkills] = useState([]);
+  const [educationItems, setEducationItems] = useState([]);
 
   useEffect(() => {
     const query = '*[_type == "experiences"]';
     const skillsQuery = '*[_type == "skills"]';
+    const educationQuery = '*[_type == "education"] | order(order asc, startDate desc)';
 
     client.fetch(query).then((data) => {
       setExperiences(data);
@@ -20,6 +23,10 @@ const Skills = () => {
 
     client.fetch(skillsQuery).then((data) => {
       setSkills(data);
+    });
+
+    client.fetch(educationQuery).then((data) => {
+      setEducationItems(data || []);
     });
   }, []);
 
@@ -40,7 +47,7 @@ const Skills = () => {
                 className="app__flex"
                 style={{ backgroundColor: skill.bgColor }}
               >
-              <img src={urlFor(skill.icon)} alt={skill.name} />
+              <img src={urlFor(skill.icon).width(90).auto('format').quality(80).url()} alt={skill.name} loading="lazy" />
               </div>
               <p className="p-text">{skill.name}</p>
             </motion.div>
@@ -85,6 +92,48 @@ const Skills = () => {
           ))}
         </div>
       </div>
+      {educationItems.length > 0 && (
+        <>
+          <h2 className="head-text" style={{ marginTop: '3rem' }}>Education</h2>
+          <div className="app__education-list">
+            {educationItems.map((edu, index) => {
+              const tooltipId = `${edu._id || 'edu'}-${index}`;
+              return (
+                <motion.div
+                  whileInView={{ opacity: [0, 1], y: [20, 0] }}
+                  transition={{ duration: 0.4 }}
+                  className="app__education-item"
+                  key={tooltipId}
+                  data-tip
+                  data-for={tooltipId}
+                  data-tooltip-id={tooltipId}
+                  data-tooltip-content={edu.description || ''}
+                >
+                  {edu.logo ? (
+                    <div className="app__education-logo app__flex">
+                      <img src={urlFor(edu.logo).url()} alt={edu.institution || 'institution-logo'} />
+                    </div>
+                  ) : null}
+                  <div className="app__education-content">
+                    {edu.institution ? <h4 className="bold-text">{edu.institution}</h4> : null}
+                    {edu.degree ? <p className="p-text app__education-institution">{edu.degree}</p> : null}
+                  </div>
+                  {edu.description ? (
+                    <ReactTooltip
+                      id={tooltipId}
+                      effect="solid"
+                      arrowColor="#fff"
+                      className="skills-tooltip"
+                    >
+                      {edu.description}
+                    </ReactTooltip>
+                  ) : null}
+                </motion.div>
+              );
+            })}
+          </div>
+        </>
+      )}
     </>
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react'
 import {NavigationDots, SocialMedia} from '../components'
+import { SECTIONS } from '../constants'
 
 const AppWrap = (Component, idName, classNames) => function HOC() {
-  const sectionOrder = ['home', 'about', 'work', 'skills', 'education', 'testimonial', 'contact'];
-  const index = sectionOrder.indexOf(idName);
+  const index = SECTIONS.indexOf(idName);
   const flipSides = index !== -1 && index % 2 === 1; // alternate sides by section index
 
   return (
