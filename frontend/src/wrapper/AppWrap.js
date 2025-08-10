@@ -7,12 +7,6 @@ const AppWrap = (Component, idName, classNames) => function HOC() {
         <SocialMedia />
         <div className="app__wrapper">
             <Component />
-            {idName === 'contact' && (
-              <div className="copyright">
-                  <p className='p-text'>@2025 Jose VA</p>
-                  <p className='p-text'>@2025 All rights and lefts reserved</p>
-              </div>
-            )}
         </div>
         <NavigationDots active={idName} />
     </div>
