@@ -106,8 +106,10 @@ const Testimonial = () => {
             <img
               src={urlFor(brand.imgUrl).url()}
               alt={brand.name}
-              title={brand.description || brand.name}
             />
+            <p className="p-text app__brand-caption">
+              {brand.description || brand.name}
+            </p>
           </motion.div>
         ))}
         <p className="testimonial-disclaimer" style={{ fontSize: '0.8rem', color: '#888', marginTop: '1rem', textAlign: 'center', width: '100%' }}>
