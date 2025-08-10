@@ -49,6 +49,12 @@ const Testimonial = () => {
 
   return (
     <>
+      <h2 className="head-text" style={{ textAlign: 'center', width: '100%' }}>
+        What people <span>say</span>
+      </h2>
+      <p className="p-text" style={{ textAlign: 'center', width: '100%', marginBottom: '1rem' }}>
+        A few highlights from people I've worked with
+      </p>
       {testimonials.length > 0 && testimonials[currentIndex] && (
         <div className="app__testimonial-wrapper">
           <motion.div
@@ -92,10 +98,6 @@ const Testimonial = () => {
           </div>
         </div>
       )}
-
-      <h2 className="head-text" style={{ textAlign: 'center', width: '100%' }}>
-        A look at my <span>past projects.</span>
-      </h2>
       <div className="app__testimonial-brands app__flex">
         {brands.map((brand) => (
           <motion.div
@@ -104,10 +106,13 @@ const Testimonial = () => {
             key={brand._id}
           >
             <img
-              src={urlFor(brand.imgUrl).url()}
+              src={urlFor(brand.imgUrl).width(300).auto('format').quality(80).url()}
               alt={brand.name}
-              title={brand.description || brand.name}
+              loading="lazy"
             />
+            <p className="p-text app__brand-caption">
+              {brand.description || brand.name}
+            </p>
           </motion.div>
         ))}
         <p className="testimonial-disclaimer" style={{ fontSize: '0.8rem', color: '#888', marginTop: '1rem', textAlign: 'center', width: '100%' }}>

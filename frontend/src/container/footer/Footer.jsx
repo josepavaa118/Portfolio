@@ -103,6 +103,10 @@ const Footer = () => {
           </h3>
         </div>
       )}
+      <div className="copyright">
+        <p className='p-text'>@2025 Jose VA</p>
+        <p className='p-text'>@2025 All rights and lefts reserved</p>
+      </div>
     </>
   );
 };

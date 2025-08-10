@@ -62,7 +62,7 @@ const Work = () => {
             <div
               className="app__work-img app__flex"
             >
-              <img src={urlFor(work.imgUrl)} alt={work.name} />
+              <img src={urlFor(work.imgUrl).width(600).auto('format').quality(80).url()} alt={work.name} loading="lazy" />
 
               <motion.div
                 whileHover={{ opacity: [0, 1] }}
