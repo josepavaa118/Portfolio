@@ -44,7 +44,7 @@ const Skills = () => {
               key={`${skill.name}-${index}`}
             >
               <div
-                className="app__flex"
+                className="app__skills-icon"
                 style={{ backgroundColor: skill.bgColor }}
               >
               <img src={urlFor(skill.icon).width(90).auto('format').quality(80).url()} alt={skill.name} loading="lazy" />

@@ -94,7 +94,7 @@ const Footer = () => {
             />
             {errors.message && <span className="error">{errors.message}</span>}
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
+          <button type="button" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
         </div>
       ) : (
         <div>

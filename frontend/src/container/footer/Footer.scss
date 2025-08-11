@@ -38,7 +38,7 @@
       padding: 1rem;
       border-radius: 10px;
       cursor: pointer;
-      background-color: #fef4f5;
+      background-color: var(--surface-3);
   
       transition: all 0.3s ease-in-out;
   
@@ -58,7 +58,7 @@
         align-items: center;
       }
       &:hover {
-        box-shadow: 0 0 25px #fef4f5;
+        box-shadow: 0 0 25px var(--surface-3);
       }
   
       @media screen and (max-width: 450px) {
@@ -71,13 +71,13 @@
     }
   }
   
-  .app__footer-cards .app__footer-card:last-child {
-    background-color: #f2f7fb;
-  }
-  
-  .app__footer-cards .app__footer-card:last-child:hover {
-    box-shadow: 0 0 25px #f2f7fb;
-  }
+.app__footer-cards .app__footer-card:last-child {
+  background-color: var(--surface-2);
+}
+
+.app__footer-cards .app__footer-card:last-child:hover {
+  box-shadow: 0 0 25px var(--surface-2);
+}
   
   .app__footer-form {
     width: 60%;
@@ -120,19 +120,28 @@
       padding: 1rem 2rem;
       border-radius: 10px;
       border: none;
-      background-color: var(--secondary-color);
-  
-      font-weight: 500;
+      background-color: var(--brand-600); /* darker for better contrast */
+
+      font-weight: 600;
       color: var(--white-color);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.2);
       outline: none;
       margin: 2rem 0 0 0;
       font-family: var(--font-base);
-  
-      transition: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+      letter-spacing: 0.01em;
+
+      transition: background-color 0.2s ease, transform 0.05s ease;
       cursor: pointer;
-  
-      &:hover {
-        background-color: #2430af;
+
+      &:hover { background-color: var(--brand-700); }
+      &:active { transform: translateY(1px); }
+      &:focus-visible { outline: 2px solid var(--white-color); outline-offset: 2px; }
+
+      &:disabled {
+        background-color: var(--border-color);
+        color: var(--text-muted);
+        text-shadow: none;
+        cursor: not-allowed;
       }
     }
   

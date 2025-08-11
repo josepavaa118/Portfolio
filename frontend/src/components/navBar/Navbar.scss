@@ -171,3 +171,21 @@
       display: none;
     }
   }
+
+  /* Theme toggle button */
+  .theme-toggle {
+    margin-left: 1rem;
+    background-color: var(--white-color);
+    color: var(--gray-color);
+    border: 1px solid var(--lightGray-color);
+    border-radius: 9999px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      color: var(--secondary-color);
+      border-color: var(--secondary-color);
+    }
+  }

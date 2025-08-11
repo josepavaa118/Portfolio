@@ -24,8 +24,8 @@
     .app__work-filter-item {
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
-      background-color: #fff;
-      color: #000;
+      background-color: var(--surface-1);
+      color: var(--text-strong);
       font-weight: 800;
   
       cursor: pointer;
@@ -45,7 +45,7 @@
   
     .item-active {
       background-color: var(--secondary-color);
-      color: #fff;
+      color: var(--white-color);
     }
   }
   
@@ -62,8 +62,8 @@
       margin: 2rem;
       padding: 1rem;
       border-radius: 0.5rem;
-      background-color: #fff;
-      color: #000;
+      background-color: var(--surface-1);
+      color: var(--text-strong);
   
       cursor: pointer;
       transition: all 0.3s ease;
@@ -105,40 +105,62 @@
   
   .app__work-hover {
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--overlay-scrim);
     border-radius: 0.5rem;
     opacity: 0;
-    transition: all 0.3s ease;
-  
-    div {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    transition: opacity 0.25s ease;
+    pointer-events: none; /* prevent lingering hover */
+  }
 
-      margin: 1rem;
-      font-family: var(--font-base);
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.3s ease;
+  .app__work-img:hover .app__work-hover,
+  .app__work-hover:hover {
+    opacity: 1;
+    pointer-events: auto;
+  }
 
-      svg {
-        width: 50%;
-        height: 50%;
-        color: var(--white-color);
-      }
-    }
+  .app__work-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .app__work-actions a {
+    display: inline-flex;
+    text-decoration: none;
+    line-height: 0;
+  }
+
+  .app__work-actions a > div {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--overlay-button-bg);
+    color: var(--white-static);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-base);
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .app__work-actions a > div:hover {
+    transform: scale(0.95);
+  }
+
+  .app__work-actions a > div svg {
+    width: 24px;
+    height: 24px;
+    color: var(--white-static);
+    display: block;
   }
   
   .app__work-content {
@@ -161,7 +183,7 @@
   
       padding: 0.5rem 1rem;
       border-radius: 10px;
-      background-color: #fff;
+      background-color: var(--surface-1);
       top: -25px;
     }
   }
