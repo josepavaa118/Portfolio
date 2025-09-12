@@ -1,0 +1,66 @@
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+
+  &__canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+}
+
+// Ensure the background doesn't interfere with content
+.app {
+  position: relative;
+  z-index: 10;
+}
+
+// Dark theme background overlay
+.animated-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(11, 18, 32, 0.3) 0%,
+    rgba(17, 24, 39, 0.2) 50%,
+    rgba(31, 41, 55, 0.3) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+// Subtle texture overlay for dark theme
+.animated-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+// Respect reduced motion preference
+@media (prefers-reduced-motion: reduce) {
+  .animated-background {
+    display: none;
+  }
+}

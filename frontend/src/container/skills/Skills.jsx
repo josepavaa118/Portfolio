@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 
 import { AppWrap, MotionWrap } from '../../wrapper';
+import { TerminalWindow, TerminalPrompt } from '../../components';
 import { urlFor, client } from '../../client';
 import './Skills.scss';
 import '../education/Education.scss';
@@ -33,6 +34,40 @@ const Skills = () => {
   return (
     <>
        <h2 className="head-text">Skills & Experiences</h2>
+
+      {/* Terminal Skills Display */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="skills-terminal-section"
+      >
+        <TerminalWindow 
+          title="skills --list" 
+          variant="skills"
+          className="skills-terminal"
+        >
+          <TerminalPrompt command="skills --list" delay={0.5}>
+            <div className="skills-output">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  className="skill-item"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
+                >
+                  <span className="checkmark">✔️</span>
+                  <span className="skill-name">{skill.name}</span>
+                  <span className="skill-level">
+                    {skill.bgColor ? 'Expert' : 'Proficient'}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </TerminalPrompt>
+        </TerminalWindow>
+      </motion.div>
 
       <div className="app__skills-container">
         <motion.div className="app__skills-list">

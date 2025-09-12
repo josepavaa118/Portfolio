@@ -1,0 +1,208 @@
+.code-block {
+  .code-content {
+    font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+
+    .terminal-line {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 0.125rem;
+      min-height: 1.4em;
+
+      .line-number {
+        color: var(--terminal-muted, #6b7280);
+        margin-right: 1rem;
+        font-size: 0.8rem;
+        min-width: 2rem;
+        text-align: right;
+        user-select: none;
+        flex-shrink: 0;
+      }
+
+      .line-content {
+        flex: 1;
+        white-space: pre;
+        overflow-x: auto;
+
+        .keyword {
+          color: var(--terminal-keyword, #ff7b72);
+          font-weight: bold;
+        }
+
+        .string {
+          color: var(--terminal-string, #a5d6ff);
+        }
+
+        .comment {
+          color: var(--terminal-muted, #6b7280);
+          font-style: italic;
+        }
+
+        .function {
+          color: var(--terminal-function, #d2a8ff);
+          font-weight: 500;
+        }
+
+        .variable {
+          color: var(--terminal-variable, #79c0ff);
+        }
+
+        .highlight {
+          color: var(--terminal-accent, #00d4aa);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  // Copy button
+  .copy-button {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--terminal-text, #d1d5db);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0;
+    transform: translateY(-4px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    &:active {
+      transform: translateY(-2px);
+    }
+  }
+
+  &:hover .copy-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive design
+@media screen and (max-width: 768px) {
+  .code-block {
+    .code-content {
+      font-size: 0.8rem;
+      line-height: 1.5;
+
+      .terminal-line {
+        .line-number {
+          margin-right: 0.75rem;
+          min-width: 1.5rem;
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .code-block {
+    .code-content {
+      font-size: 0.75rem;
+      line-height: 1.4;
+
+      .terminal-line {
+        .line-number {
+          margin-right: 0.5rem;
+          min-width: 1.25rem;
+        }
+      }
+    }
+  }
+}
+
+// Animation for code appearing
+@keyframes codeAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.code-content .terminal-line {
+  animation: codeAppear 0.3s ease-out;
+  animation-fill-mode: both;
+}
+
+.code-content .terminal-line:nth-child(1) { animation-delay: 0.1s; }
+.code-content .terminal-line:nth-child(2) { animation-delay: 0.2s; }
+.code-content .terminal-line:nth-child(3) { animation-delay: 0.3s; }
+.code-content .terminal-line:nth-child(4) { animation-delay: 0.4s; }
+.code-content .terminal-line:nth-child(5) { animation-delay: 0.5s; }
+.code-content .terminal-line:nth-child(6) { animation-delay: 0.6s; }
+.code-content .terminal-line:nth-child(7) { animation-delay: 0.7s; }
+.code-content .terminal-line:nth-child(8) { animation-delay: 0.8s; }
+.code-content .terminal-line:nth-child(9) { animation-delay: 0.9s; }
+.code-content .terminal-line:nth-child(10) { animation-delay: 1.0s; }
+
+// Prism integration tweaks
+.code-content.prism {
+  white-space: normal;
+  padding: 0;
+
+  pre {
+    margin: 0;
+    padding: 1rem 1.25rem;
+    background: transparent; // terminal window already provides bg
+    border-radius: 0;
+    overflow: auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  pre[class*="language-"] {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .line-numbers .line-numbers-rows {
+    border-right: 0;
+  }
+
+  .line-numbers .line-numbers-rows > span:before {
+    color: var(--terminal-muted, #6b7280);
+  }
+}
+
+// Ensure no background on individual lines or highlighted tokens
+.code-block .code-content.prism pre [class*="language-"] {
+  background: transparent !important;
+}
+
+.code-block .code-content.prism pre code {
+  background: transparent !important;
+}
+
+// Keep cursor visible and blinking
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background: var(--terminal-accent, #00d4aa);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

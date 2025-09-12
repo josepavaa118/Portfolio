@@ -3,6 +3,7 @@ import './Header'
 import { motion } from 'framer-motion';
 import './Header.scss'
 import { images } from '../../constants'
+import { TypingEffect } from '../../components'
 import {AppWrap} from '../../wrapper'
 const scaleVariants={
   whileInView:{
@@ -39,7 +40,12 @@ const Header = () => {
 
         <div className="tag-cmp app__flex bio-cmp" style={{ marginTop: 16 }}>
           <p className="p-text">
-          Experienced Automation QA Engineer with 11 years specializing in software quality assurance, test automation, and delivering reliable, high-quality software solutions.
+            <TypingEffect 
+              text="Experienced Automation QA Engineer with 11 years specializing in software quality assurance, test automation, and delivering reliable, high-quality software solutions."
+              speed={30}
+              delay={1000}
+              className="header-typing"
+            />
           </p>
         </div>
 
@@ -51,13 +57,6 @@ const Header = () => {
         transition={{duration: 1, delayChildren: 0.5}}
         className="app__header-img">
           <img src={images.profile} alt="profile_bg" />
-          <motion.img 
-            whileInView={{scale: [0,1]}}
-            transition={{duration: 1, ease: 'easeInOut'}}
-            src={images.circle}
-            alt='profile_circle'
-            className="overlay_circle"
-          ></motion.img>
       </motion.div>
 
       <motion.div

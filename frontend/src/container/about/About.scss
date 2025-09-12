@@ -2,13 +2,26 @@
     width: 100%;
     flex-direction: column;
   }
+
+  .about-code-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+
+    .about-code-block {
+      margin: 0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+      border: 1px solid var(--lightGray-color);
+    }
+  }
   
   .app__profiles {
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-wrap: wrap;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
   
   .app__profile-item {

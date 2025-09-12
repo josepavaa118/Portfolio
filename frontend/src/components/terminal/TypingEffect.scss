@@ -1,0 +1,57 @@
+.typing-effect {
+  display: inline-block;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  color: var(--terminal-text, #d1d5db);
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  .typing-cursor {
+    color: var(--terminal-accent, #00d4aa);
+    font-weight: bold;
+    margin-left: 2px;
+    display: inline-block;
+    width: 2px;
+    height: 1.2em;
+    background: currentColor;
+    vertical-align: text-bottom;
+  }
+}
+
+// Responsive design
+@media screen and (max-width: 768px) {
+  .typing-effect {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .typing-effect {
+    font-size: 0.75rem;
+  }
+}
+
+// Animation variations
+.typing-effect.fast {
+  .typing-cursor {
+    animation-duration: 0.8s;
+  }
+}
+
+.typing-effect.slow {
+  .typing-cursor {
+    animation-duration: 1.5s;
+  }
+}
+
+.typing-effect.blink {
+  .typing-cursor {
+    animation: blink 1s infinite;
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+

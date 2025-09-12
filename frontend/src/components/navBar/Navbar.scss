@@ -116,10 +116,11 @@
       align-items: flex-end;
       flex-direction: column;
       
-      background: url('../../assets/bgWhite.png');
-      background-color: var(--white-color);
+      /* Remove white photo background; use theme surfaces instead */
+      background: var(--white-color);
+      background-image: none;
       background-size: cover;
-      background-repeat: repeat;
+      background-repeat: no-repeat;
   
       /* top box shadow */
       box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.15);
@@ -167,25 +168,15 @@
       }
     }
   
+    /* Dark theme: ensure panel matches dark surfaces, no white image */
+    :root[data-theme="dark"] & {
+      div {
+        background: var(--surface-1);
+        background-image: none;
+      }
+    }
+
     @media screen and (min-width: 900px) {
       display: none;
-    }
-  }
-
-  /* Theme toggle button */
-  .theme-toggle {
-    margin-left: 1rem;
-    background-color: var(--white-color);
-    color: var(--gray-color);
-    border: 1px solid var(--lightGray-color);
-    border-radius: 9999px;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-      color: var(--secondary-color);
-      border-color: var(--secondary-color);
     }
   }

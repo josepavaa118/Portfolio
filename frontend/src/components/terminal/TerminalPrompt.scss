@@ -1,0 +1,130 @@
+.terminal-prompt {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+
+  .prompt-symbol {
+    color: var(--terminal-accent, #00d4aa);
+    margin-right: 0.5rem;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 0.1em;
+  }
+
+  .prompt-text {
+    color: var(--terminal-text, #d1d5db);
+    font-weight: 500;
+  }
+
+  .prompt-output {
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    color: var(--terminal-text, #d1d5db);
+    line-height: 1.6;
+
+    .output-line {
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+
+      .checkmark {
+        color: var(--terminal-success, #00d4aa);
+        margin-right: 0.5rem;
+        font-weight: bold;
+      }
+
+      .cross {
+        color: var(--terminal-error, #ff5f56);
+        margin-right: 0.5rem;
+        font-weight: bold;
+      }
+
+      .item-text {
+        color: var(--terminal-text, #d1d5db);
+      }
+
+      .item-value {
+        color: var(--terminal-accent, #00d4aa);
+        margin-left: 0.5rem;
+      }
+    }
+
+    .output-list {
+      margin-left: 1rem;
+      
+      .list-item {
+        margin-bottom: 0.25rem;
+        display: flex;
+        align-items: center;
+
+        .item-icon {
+          margin-right: 0.5rem;
+          font-size: 0.8rem;
+        }
+
+        .item-name {
+          color: var(--terminal-text, #d1d5db);
+        }
+      }
+    }
+  }
+
+  // Animation for typing effect
+  &.typing {
+    .prompt-text::after {
+      content: '|';
+      animation: blink 1s infinite;
+      color: var(--terminal-accent, #00d4aa);
+    }
+  }
+}
+
+// Responsive design
+@media screen and (max-width: 768px) {
+  .terminal-prompt {
+    font-size: 0.8rem;
+    line-height: 1.5;
+
+    .prompt-symbol {
+      margin-right: 0.25rem;
+    }
+
+    .prompt-output {
+      margin-left: 1rem;
+      font-size: 0.8rem;
+
+      .output-line {
+        .checkmark,
+        .cross {
+          margin-right: 0.25rem;
+        }
+      }
+
+      .output-list {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .terminal-prompt {
+    font-size: 0.75rem;
+    line-height: 1.4;
+
+    .prompt-output {
+      margin-left: 0.75rem;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+// Blink animation for cursor
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+

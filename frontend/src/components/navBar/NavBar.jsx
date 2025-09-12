@@ -7,34 +7,11 @@ import './Navbar.scss';
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const [theme, setTheme] = useState(null);
 
-  // Initialize theme based on stored preference or system setting
+  // Force dark theme only
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initial = stored || (prefersDark ? 'dark' : 'light');
-      if (initial === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
-        document.documentElement.removeAttribute('data-theme');
-      }
-      setTheme(initial);
-    } catch (_) {
-      setTheme('light');
-    }
+    document.documentElement.setAttribute('data-theme', 'dark');
   }, []);
-
-  useEffect(() => {
-    if (!theme) return;
-    if (theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
-    try { localStorage.setItem('theme', theme); } catch (_) {}
-  }, [theme]);
 
   return (
     <nav className="app__navbar">
@@ -49,14 +26,6 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      <button
-        type="button"
-        className="theme-toggle"
-        aria-label="Toggle dark mode"
-        onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
-      >
-        {theme === 'dark' ? 'Light' : 'Dark'}
-      </button>
 
       <div className="app__navbar-menu">
         <HiMenuAlt4 onClick={() => setToggle(true)} />

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
 
 :root {
   --font-base: "DM Sans", sans-serif;
@@ -9,43 +10,7 @@
   --black-static: #000000;
   --font-reading: "Work Sans", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 
-  /* Semantic tokens */
-  --bg: #F8FAFC;
-  --text-strong: #0B1220;
-  --text-muted: #475569;
-  --border-color: #E5E7EB;
-
-  --brand-500: #0EA5E9;   /* Sky */
-  --brand-600: #0284C7;   /* Hover on dark text */
-  --brand-700: #0369A1;   /* Active/pressed */
-
-  --accent-500: #06B6D4;  /* Cyan */
-  --accent-600: #0891B2;
-
-  --surface-1: #FFFFFF;   /* cards / nav dots / modals */
-  --surface-2: #F3F4F6;   /* app base */
-  --surface-3: #EEF2F7;   /* subtle highlights */
-
-  /* Overlays */
-  --overlay-scrim: rgba(0, 0, 0, 0.5);
-  --overlay-button-bg: rgba(0, 0, 0, 0.6);
-
-  --success-500: #16A34A;
-  --warning-500: #D97706;
-  --error-500: #DC2626;
-
-  /* Backwards-compat aliases */
-  --primary-color: var(--surface-2);
-  --secondary-color: var(--brand-500);
-  --accent-color: var(--accent-500);
-  --black-color: var(--text-strong);
-  --lightGray-color: var(--border-color);
-  --gray-color: var(--text-muted);
-  --white-color: var(--surface-1);
-}
-
-/* Dark theme */
-:root[data-theme="dark"] {
+  /* Dark theme semantic tokens (default) */
   --bg: #0B1220;
   --text-strong: #E5E7EB;
   --text-muted: #A3AAB8;
@@ -65,14 +30,36 @@
   /* Overlays tuned for dark backgrounds */
   --overlay-scrim: rgba(255, 255, 255, 0.08);
   --overlay-button-bg: rgba(255, 255, 255, 0.16);
+
+  --success-500: #16A34A;
+  --warning-500: #D97706;
+  --error-500: #DC2626;
+
+  /* Backwards-compat aliases */
+  --primary-color: var(--surface-2);
+  --secondary-color: var(--brand-500);
+  --accent-color: var(--accent-500);
+  --black-color: var(--text-strong);
+  --lightGray-color: var(--border-color);
+  --gray-color: var(--text-muted);
+  --white-color: var(--surface-1);
+
+  /* Terminal theme variables for dark mode */
+  --terminal-bg: #0d1117;
+  --terminal-border: #30363d;
+  --terminal-header-bg: #21262d;
+  --terminal-text: #f0f6fc;
+  --terminal-muted: #8b949e;
+  --terminal-accent: #58a6ff;
+  --terminal-accent-hover: #79c0ff;
+  --terminal-success: #3fb950;
+  --terminal-error: #f85149;
+  --terminal-string: #a5d6ff;
+  --terminal-keyword: #ff7b72;
+  --terminal-function: #d2a8ff;
+  --terminal-variable: #79c0ff;
 }
 
-/* Optional: auto-dark if no explicit toggle */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    color-scheme: dark;
-  }
-}
 
 * {
   box-sizing: border-box;

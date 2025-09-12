@@ -10,8 +10,11 @@ const Education = () => {
   const [educationItems, setEducationItems] = useState([]);
 
   useEffect(() => {
-    const query = '*[_type == "education"] | order(order asc, startDate desc)';
-    client.fetch(query).then((data) => setEducationItems(data || []));
+    const query = '*[_type == "education" && !(_id in path("drafts.**"))] | order(order asc, startDate desc)';
+    client.fetch(query).then((data) => {
+      const unique = Object.values((data || []).reduce((acc, doc) => { acc[doc._id] = doc; return acc; }, {}));
+      setEducationItems(unique);
+    });
   }, []);
 
   const formatDate = (dateString) => {

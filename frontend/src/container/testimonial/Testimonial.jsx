@@ -11,7 +11,7 @@ const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [brands, setBrands] = useState([]);
   const [expanded, setExpanded] = useState(false);
-  const [showToggle, setShowToggle] = useState(false); // Track if toggle is needed
+  const [showToggle, setShowToggle] = useState(false);
   const feedbackRef = useRef(null);
 
   const handleClick = (index) => {
@@ -19,14 +19,13 @@ const Testimonial = () => {
   };
 
   useEffect(() => {
-    setExpanded(false); // Reset expanded when testimonial changes
+    setExpanded(false);
   }, [currentIndex]);
 
   useEffect(() => {
     if (feedbackRef.current) {
-      // Temporarily remove expanded class to measure collapsed height
       feedbackRef.current.classList.remove('expanded');
-      const isOverflowing = feedbackRef.current.scrollHeight > feedbackRef.current.clientHeight + 1; // +1 for rounding
+      const isOverflowing = feedbackRef.current.scrollHeight > feedbackRef.current.clientHeight + 1;
       setShowToggle(isOverflowing);
       if (expanded) {
         feedbackRef.current.classList.add('expanded');
@@ -35,15 +34,21 @@ const Testimonial = () => {
   }, [testimonials, currentIndex, expanded]);
 
   useEffect(() => {
-    const query = '*[_type == "testimonials"]';
-    const brandsQuery = '*[_type == "brands"]';
+    const query = '*[_type == "testimonials" && !(_id in path("drafts.**"))] | order(_createdAt desc)';
+    const brandsQuery = '*[_type == "brands" && !(_id in path("drafts.**"))] | order(order asc, _createdAt desc)';
 
     client.fetch(query).then((data) => {
-      setTestimonials(data);
+      const unique = Object.values((data || []).reduce((acc, doc) => {
+        acc[doc._id] = doc; return acc;
+      }, {}));
+      setTestimonials(unique);
     });
 
     client.fetch(brandsQuery).then((data) => {
-      setBrands(data);
+      const unique = Object.values((data || []).reduce((acc, doc) => {
+        acc[doc._id] = doc; return acc;
+      }, {}));
+      setBrands(unique);
     });
   }, []);
 

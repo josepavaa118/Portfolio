@@ -8,17 +8,20 @@
   }
   
   .app__testimonial-item {
+    position: relative;
+    isolation: isolate;
     width: 40%;
     min-width: 320px;
-    min-height: 280px;
-    height: auto;
-    background-color: var(--white-color);
+    height: 340px; /* Fixed height to prevent expansion */
+    background-color: #1b2538d8; /* requested background */
+    border: 1px solid #0a5291; /* requested border */
     display: flex;
     flex-direction: row;
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-    overflow: visible;
+    backdrop-filter: saturate(120%) blur(6px);
+    overflow: hidden; /* keep card from expanding */
   
     transition: all 0.3s ease-in-out;
   
@@ -27,11 +30,15 @@
       height: 100px;
       border-radius: 50%;
       object-fit: cover;
+      flex: 0 0 auto; /* prevent shrinking */
+      will-change: transform, opacity; /* smoother hover/tap */
+      position: relative;
+      z-index: 1; /* ensure above any overlays */
+      transform: translateZ(0);
     }
   
     @media screen and (min-width: 2000px) {
-      min-height: 450px;
-      height: auto;
+      height: 480px; /* fixed on very large screens */
   
       img {
         width: 150px;
@@ -52,8 +59,8 @@
     flex: 1;
     padding: 0 2rem;
     text-align: left;
-    height: auto;
-    overflow: visible;
+    height: 100%;
+    overflow: hidden; /* control overflow within content */
 
     display: flex;
     flex-direction: column;
@@ -63,9 +70,9 @@
     p {
       font-size: 1.25rem;
       line-height: 2rem;
-      color: var(--black-color);
+      color: #e6f0ff; /* improve contrast on dark card */
       font-family: var(--font-base);
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       overflow: visible;
       word-wrap: break-word;
       white-space: normal;
@@ -81,6 +88,8 @@
       font-family: var(--font-reading);
       font-size: clamp(0.98rem, 0.9rem + 0.35vw, 1.2rem);
       line-height: 1.65rem;
+      flex: 1 1 auto; /* occupy available vertical space */
+      min-height: 0;   /* allow scrolling when expanded */
     }
 
     .p-text.testimonial-feedback {
@@ -98,8 +107,27 @@
     .p-text.testimonial-feedback.expanded {
       -webkit-line-clamp: unset;
       line-clamp: unset;
-      max-height: none;
-      overflow: visible;
+      max-height: 100%;
+      overflow: auto; /* scroll instead of growing the card */
+      
+      /* Hide scrollbar but keep scrolling functionality */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+      
+      &::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+    }
+
+    /* Fading gradient scrim when collapsed */
+    .testimonial-scrim {
+      pointer-events: none;
+      align-self: stretch;
+      height: 48px;
+      margin-top: -48px; /* overlap bottom of text */
+      background: linear-gradient(to bottom, rgba(27, 37, 56, 0), rgba(27, 37, 56, 0.85));
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
     }
 
     .p-text.testimonial-disclaimer {
@@ -134,13 +162,13 @@
 
     h4 {
       font-weight: 600;
-      color: var(--secondary-color);
+      color: #7cc4ff; /* accent on dark card */
       margin-top: 0;
     }
 
     h5 {
       font-weight: 400;
-      color: var(--gray-color);
+      color: #b3c7e6;
       margin-top: 5px;
     }
 
